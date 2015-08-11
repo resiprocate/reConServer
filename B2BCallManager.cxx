@@ -34,8 +34,8 @@ B2BCallManager::B2BCallManager(MediaInterfaceMode mediaInterfaceMode, int defaul
          resip::Headers::Type hType = resip::Headers::getType(headerName.data(), (int)headerName.size());
          if(hType == resip::Headers::UNKNOWN)
          {
-            std::auto_ptr<ExtensionHeader> h(new ExtensionHeader(headerName.c_str()));
-            mReplicatedHeaders.push_back(h);
+            std::unique_ptr<ExtensionHeader> h(new ExtensionHeader(headerName.c_str()));
+            mReplicatedHeaders.push_back(std::move(h));
             InfoLog(<<"Will replicate header '"<<headerName<<"'");
          }
          else
@@ -100,7 +100,7 @@ B2BCallManager::onIncomingParticipant(ParticipantHandle partHandle, const SipMes
    const Uri& reqUri = msg.header(h_RequestLine).uri();
    NameAddr newDest("sip:" + reqUri.user() + '@' + mB2BUANextHop);
    std::multimap<Data,Data> extraHeaders;
-   std::vector<std::auto_ptr<resip::ExtensionHeader> >::const_iterator it = mReplicatedHeaders.begin();
+   std::vector<std::unique_ptr<resip::ExtensionHeader> >::const_iterator it = mReplicatedHeaders.begin();
    for( ; it != mReplicatedHeaders.end(); it++)
    {
       ExtensionHeader& h = **it;
