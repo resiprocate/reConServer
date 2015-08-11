@@ -1177,7 +1177,7 @@ ReConServerProcess::main (int argc, char** argv)
    // Create ConverationManager and UserAgent
    //////////////////////////////////////////////////////////////////////////////
    {
-      std::auto_ptr<MyConversationManager> myConversationManager;
+      std::unique_ptr<MyConversationManager> myConversationManager;
       switch(application)
       {
          case ReConServerConfig::None:
