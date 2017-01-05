@@ -35,10 +35,10 @@ public:
    virtual void onParticipantAlerting(ParticipantHandle partHandle, const SipMessage& msg);
    virtual void onParticipantConnected(ParticipantHandle partHandle, const SipMessage& msg);
 
+   resip::SharedPtr<ConversationProfile> getInternalConversationProfile();
    resip::SharedPtr<ConversationProfile> getIncomingConversationProfile(const resip::SipMessage& msg, resip::SharedPtr<ConversationProfile> defaultProfile);
 
 protected:
-   resip::SharedPtr<ConversationProfile> getInternalConversationProfile();
    virtual bool isSourceInternal(const SipMessage& msg);
 
    struct B2BCall
