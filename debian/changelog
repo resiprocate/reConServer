@@ -1,3 +1,9 @@
+reconserver (0.13.3-2) unstable; urgency=high
+
+  * Update Build-Deps for reSIProcate 1.11.0~beta1. (Closes: #850244)
+
+ -- Daniel Pocock <daniel@pocock.pro>  Sun, 15 Jan 2017 21:45:28 +0100
+
 reconserver (0.13.3-1) unstable; urgency=medium
 
   * New upstream release.
